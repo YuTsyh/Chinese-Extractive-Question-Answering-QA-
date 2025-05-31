@@ -101,6 +101,6 @@ python inference_pipeline.py \
 預測結果將保存在 submission.csv 文件中。
 
 ## 已訓練模型 (Hugging Face Hub)
-段落選擇模型: [在此處插入您的 Hugging Face Model Hub 鏈接]
+段落選擇模型: [段落選擇模型](https://huggingface.co/TheWeeeed/chinese-paragraph-selector)
 
-答案抽取模型: [在此處插入您的 Hugging Face Model Hub 鏈接]
+答案抽取模型: [答案抽取模型](https://huggingface.co/TheWeeeed/chinese-extractive-qa)
