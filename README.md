@@ -65,6 +65,7 @@ python run_swag_no_trainer.py \
     --num_train_epochs 1 
 
 2. 訓練答案抽取模型
+
 python run_qa_no_trainer.py \
     --model_name_or_path bert-base-chinese \
     --train_file ./data/qa_train.json \
