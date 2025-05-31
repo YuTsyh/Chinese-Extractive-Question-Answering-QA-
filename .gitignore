@@ -1,0 +1,45 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*build*/
+*dist*/
+*.egg-info/
+*.egg
+*.ipynb_checkpoints/
+
+# Virtual environment
+.venv/
+venv/
+ENV/
+env/
+ENV.bak/
+env.bak/
+
+# IDE / OS specific
+.idea/
+.vscode/
+*.DS_Store
+desktop.ini
+
+# Trained model outputs (these will go to Hugging Face Hub)
+paragraph_selector_output_local/
+qa_model_output/
+# 如果您還有其他本地模型輸出文件夾，也添加到這裡
+
+# Output files
+submission.csv
+*.log
+
+# Large data files (optional, consider if these are very large or can be regenerated)
+# 如果 mc_*.json 和 qa_*.json 文件很大，或者可以通過腳本輕鬆重新生成，
+# 建議取消下面幾行的註釋以忽略它們。
+mc_train.json
+mc_valid.json
+qa_train.json
+qa_valid.json
+
+# 如果您的原始數據文件 (context.json, train.json, etc.) 非常大 (例如 >100MB)，
+# 也考慮忽略它們，並在 README 中說明如何獲取或生成它們。
+# 否則，如果它們不大，可以保留在倉庫中。
