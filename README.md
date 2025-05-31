@@ -38,10 +38,6 @@ cd Chinese-Extractive-Question-Answering-QA-
 創建並激活 Python 虛擬環境 (推薦):
 
 python -m venv .venv
-# Windows
-.\.venv\Scripts\activate
-# macOS/Linux
-source .venv/bin/activate
 
 安裝依賴:
 
