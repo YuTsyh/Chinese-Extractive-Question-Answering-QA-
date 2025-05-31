@@ -1,16 +1,66 @@
-中文抽取式問答系統 (Chinese Extractive QA)本項目實現了一個兩階段的中文抽取式問答系統：段落選擇：從候選段落中選出最相關的段落。答案抽取：從選定段落中提取答案。項目文件概覽data/: 存放所有數據文件，建議結構如下：原始數據: context.json, train.json, valid.json, test.json預處理後數據: mc_train.json, mc_valid.json (用於段落選擇), qa_train.json, qa_valid.json (用於答案抽取)提交範例: sample_submission.csvrun_paragraph_selection.py: (您目前的 "Multiple Choice Script.py") 用於訓練第一階段的段落選擇模型。run_qa_no_trainer.py: 用於訓練第二階段的答案抽取模型。inference_pipeline.py: 用於執行完整的兩階段推理流程並生成 submission.csv。utils_qa.py: 問答任務常用的輔助函數 (由 Hugging Face 提供)。dataCorrect.py: 您的數據預處理腳本，用於生成多選任務數據 (例如 mc_*.json)。QAdata.py: 您的數據預處理腳本，用於生成問答任務數據 (例如 qa_*.json)。requirements.txt: 項目所需的 Python 庫。README.md: 本說明文件。(請根據您的實際文件名和功能更新上述描述，例如將 "Multiple Choice Script.py" 重命名為 run_paragraph_selection.py 以提高可讀性。)環境設置克隆倉庫:git clone [https://github.com/YuTsyh/Chinese-Extractive-Question-Answering-QA-.git](https://github.com/YuTsyh/Chinese-Extractive-Question-Answering-QA-.git)
+中文抽取式問答系統 (Chinese Extractive QA)
+本項目實現了一個兩階段的中文抽取式問答系統：
+
+段落選擇：從候選段落中選出最相關的段落。
+
+答案抽取：從選定段落中提取答案。
+
+項目文件概覽
+原始數據: context.json, train.json, valid.json, test.json
+
+預處理後數據: mc_train.json, mc_valid.json (用於段落選擇), qa_train.json, qa_valid.json (用於答案抽取)
+
+提交範例: sample_submission.csv
+
+run_swag_no_trainer.py: 用於訓練第一階段的段落選擇模型。
+
+run_qa_no_trainer.py: 用於訓練第二階段的答案抽取模型。
+
+inference_pipeline.py: 用於執行完整的兩階段推理流程並生成 submission.csv。
+
+utils_qa.py: 問答任務常用的輔助函數 (由 Hugging Face 提供)。
+
+dataCorrect.py: 您的數據預處理腳本，用於生成多選任務數據 (例如 mc_*.json)。
+
+QAdata.py: 您的數據預處理腳本，用於生成問答任務數據 (例如 qa_*.json)。
+
+requirements.txt: 項目所需的 Python 庫。
+
+README.md: 本說明文件。
+
+環境設置
+克隆倉庫:
+
+git clone [https://github.com/YuTsyh/Chinese-Extractive-Question-Answering-QA-.git](https://github.com/YuTsyh/Chinese-Extractive-Question-Answering-QA-.git)
 cd Chinese-Extractive-Question-Answering-QA-
-創建並激活 Python 虛擬環境 (推薦):python -m venv .venv
+
+創建並激活 Python 虛擬環境 (推薦):
+
+python -m venv .venv
 # Windows
 .\.venv\Scripts\activate
 # macOS/Linux
 source .venv/bin/activate
-安裝依賴:pip install -r requirements.txt
-(您可以使用 pip freeze > requirements.txt 在激活的虛擬環境中生成此文件，以包含所有必要的庫如 transformers, torch, datasets, evaluate, pandas, numpy 等。)數據準備將原始數據文件 (context.json, train.json, valid.json, test.json) 放入 data/ 文件夾 (如果尚未在該處，或者根據您腳本中的路徑進行調整)。運行您的數據預處理腳本以生成模型訓練所需的格式化數據：為段落選擇模型 (生成 mc_*.json):# 示例: 假設您的 dataCorrect.py 包含必要的函數並處理路徑
+
+安裝依賴:
+
+pip install -r requirements.txt
+
+數據準備
+為段落選擇模型 (生成 mc_*.json):
+
+# 示例: 假設您的 dataCorrect.py 包含必要的函數並處理路徑
 python dataCorrect.py 
-(請確保 dataCorrect.py 中的文件路徑正確指向 data/ 文件夾下的原始數據，並將輸出（例如 mc_train.json, mc_valid.json）保存到 data/ 文件夾。)為答案抽取模型 (生成 qa_*.json):# 示例: 假設您的 QAdata.py 包含必要的函數並處理路徑
+
+為答案抽取模型 (生成 qa_*.json):
+
+# 示例: 假設您的 QAdata.py 包含必要的函數並處理路徑
 python QAdata.py
-(請確保 QAdata.py 中的文件路徑正確指向 data/ 文件夾下的原始數據，並將輸出（例如 qa_train.json, qa_valid.json）保存到 data/ 文件夾。)模型訓練1. 訓練段落選擇模型(假設您已將 "Multiple Choice Script.py" 重命名為 run_paragraph_selection.py)python run_paragraph_selection.py \
+
+模型訓練
+1. 訓練段落選擇模型
+
+python run_swag_no_trainer.py \
     --model_name_or_path bert-base-chinese \
     --train_file ./data/mc_train.json \
     --validation_file ./data/mc_valid.json \
@@ -19,7 +69,9 @@ python QAdata.py
     --per_device_train_batch_size 1 \
     --num_train_epochs 1 
     # 您可以根據需要添加 --pad_to_max_length 等其他參數
-2. 訓練答案抽取模型python run_qa_no_trainer.py \
+
+2. 訓練答案抽取模型
+python run_qa_no_trainer.py \
     --model_name_or_path bert-base-chinese \
     --train_file ./data/qa_train.json \
     --validation_file ./data/qa_valid.json \
@@ -31,7 +83,11 @@ python QAdata.py
     --pad_to_max_length \
     --preprocessing_num_workers 2
     # ... 其他參數
-注意：訓練好的模型會保存在 --output_dir 指定的文件夾中。這些模型文件夾通常由 .gitignore 忽略，模型本身建議上傳到 Hugging Face Model Hub。執行推理使用 inference_pipeline.py 腳本，利用已訓練的兩個模型生成對 test.json 的預測。python inference_pipeline.py \
+
+執行推理
+使用 inference_pipeline.py 腳本，利用已訓練的兩個模型生成對 test.json 的預測。
+
+python inference_pipeline.py \
     --paragraph_selector_model_path ./paragraph_selector_output_local \
     --qa_model_path ./qa_model_output \
     --tokenizer_name_or_path bert-base-chinese \
@@ -44,4 +100,10 @@ python QAdata.py
     --qa_batch_size 8 \
     --n_best_size 20 \
     --max_answer_length 100
-預測結果將保存在 submission.csv 文件中。已訓練模型 (Hugging Face Hub)段落選擇模型: [在此處插入您的 Hugging Face Model Hub 鏈接]答案抽取模型: [在此處插入您的 Hugging Face Model Hub 鏈接]
+
+預測結果將保存在 submission.csv 文件中。
+
+已訓練模型 (Hugging Face Hub)
+段落選擇模型: [在此處插入您的 Hugging Face Model Hub 鏈接]
+
+答案抽取模型: [在此處插入您的 Hugging Face Model Hub 鏈接]
