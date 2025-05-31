@@ -32,6 +32,7 @@ README.md: 本說明文件。
 克隆倉庫:
 
 git clone [https://github.com/YuTsyh/Chinese-Extractive-Question-Answering-QA-.git](https://github.com/YuTsyh/Chinese-Extractive-Question-Answering-QA-.git)
+
 cd Chinese-Extractive-Question-Answering-QA-
 
 創建並激活 Python 虛擬環境 (推薦):
