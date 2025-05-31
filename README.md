@@ -1,11 +1,11 @@
-中文抽取式問答系統 (Chinese Extractive QA)
+# 中文抽取式問答系統 (Chinese Extractive QA)
 本項目實現了一個兩階段的中文抽取式問答系統：
 
 段落選擇：從候選段落中選出最相關的段落。
 
 答案抽取：從選定段落中提取答案。
 
-項目文件概覽
+## 項目文件概覽
 原始數據: context.json, train.json, valid.json, test.json
 
 預處理後數據: mc_train.json, mc_valid.json (用於段落選擇), qa_train.json, qa_valid.json (用於答案抽取)
@@ -28,7 +28,7 @@ requirements.txt: 項目所需的 Python 庫。
 
 README.md: 本說明文件。
 
-環境設置
+## 環境設置
 克隆倉庫:
 
 git clone [https://github.com/YuTsyh/Chinese-Extractive-Question-Answering-QA-.git](https://github.com/YuTsyh/Chinese-Extractive-Question-Answering-QA-.git)
@@ -46,18 +46,16 @@ source .venv/bin/activate
 
 pip install -r requirements.txt
 
-數據準備
+## 數據準備
 為段落選擇模型 (生成 mc_*.json):
 
-# 示例: 假設您的 dataCorrect.py 包含必要的函數並處理路徑
 python dataCorrect.py 
 
 為答案抽取模型 (生成 qa_*.json):
 
-# 示例: 假設您的 QAdata.py 包含必要的函數並處理路徑
 python QAdata.py
 
-模型訓練
+## 模型訓練
 1. 訓練段落選擇模型
 
 python run_swag_no_trainer.py \
@@ -84,7 +82,7 @@ python run_qa_no_trainer.py \
     --preprocessing_num_workers 2
     # ... 其他參數
 
-執行推理
+## 執行推理
 使用 inference_pipeline.py 腳本，利用已訓練的兩個模型生成對 test.json 的預測。
 
 python inference_pipeline.py \
@@ -103,7 +101,7 @@ python inference_pipeline.py \
 
 預測結果將保存在 submission.csv 文件中。
 
-已訓練模型 (Hugging Face Hub)
+## 已訓練模型 (Hugging Face Hub)
 段落選擇模型: [在此處插入您的 Hugging Face Model Hub 鏈接]
 
 答案抽取模型: [在此處插入您的 Hugging Face Model Hub 鏈接]
