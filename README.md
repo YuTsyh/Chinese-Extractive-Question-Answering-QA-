@@ -41,16 +41,16 @@ python -m venv .venv
 
 安裝依賴:
 
-pip install -r requirements.txt
+`pip install -r requirements.txt`
 
 ## 數據準備
 為段落選擇模型 (生成 mc_*.json):
 
-python dataCorrect.py 
+`python dataCorrect.py `
 
 為答案抽取模型 (生成 qa_*.json):
 
-python QAdata.py
+`python QAdata.py`
 
 ## 模型訓練
 1. 訓練段落選擇模型
@@ -87,7 +87,7 @@ python run_qa_no_trainer.py ^
     
 ## 執行推理
 使用 inference_pipeline.py 腳本，利用已訓練的兩個模型生成對 test.json 的預測。
-
+```
 python inference_pipeline.py \
     --paragraph_selector_model_path ./paragraph_selector_output_local \
     --qa_model_path ./qa_model_output \
@@ -101,7 +101,7 @@ python inference_pipeline.py \
     --qa_batch_size 8 \
     --n_best_size 20 \
     --max_answer_length 100
-
+```
 預測結果將保存在 submission.csv 文件中。
 
 ## 已訓練模型 (Hugging Face Hub)
