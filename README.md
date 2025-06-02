@@ -56,32 +56,56 @@ python QAdata.py
 1. 訓練段落選擇模型
 
 python run_swag_no_trainer.py ^
+
      --model_name_or_path bert-base-chinese ^
+     
      --train_file ./data/mc_train.json ^
+     
      --validation_file ./data/mc_valid.json ^
+     
      --output_dir ./paragraph_selector_output_local ^
+     
      --max_seq_length 512 ^
+     
      --per_device_train_batch_size 1 ^
+     
      --gradient_accumulation_steps 2 ^
+     
      --learning_rate 3e-5 ^
+     
      --num_train_epochs 1 ^
+     
      --pad_to_max_length 
+     
 
 2. 訓練答案抽取模型
 
 python run_qa_no_trainer.py ^
+
     --model_name_or_path bert-base-chinese ^
+    
     --train_file ./data/qa_train.json ^
+    
     --validation_file ./data/qa_valid.json ^
+    
     --output_dir ./qa_model_output ^
+    
     --max_seq_length 512 ^
+    
     --doc_stride 128 ^
+    
     --per_device_train_batch_size 1 ^
+    
     --gradient_accumulation_steps 2 ^
+    
     --learning_rate 3e-5 ^
+    
     --num_train_epochs 1 ^
+    
     --pad_to_max_length ^
+    
     --preprocessing_num_workers 2
+    
 
 ## 執行推理
 使用 inference_pipeline.py 腳本，利用已訓練的兩個模型生成對 test.json 的預測。
