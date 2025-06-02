@@ -106,3 +106,5 @@ python inference_pipeline.py \
 段落選擇模型: [段落選擇模型](https://huggingface.co/TheWeeeed/chinese-paragraph-selector)
 
 答案抽取模型: [答案抽取模型](https://huggingface.co/TheWeeeed/chinese-extractive-qa)
+
+結果測試: [https://huggingface.co/spaces/TheWeeeed/chinese-qa-demo](https://huggingface.co/spaces/TheWeeeed/chinese-qa-demo)
