@@ -80,7 +80,7 @@ python run_qa_no_trainer.py ^
     --per_device_train_batch_size 1 ^
     --gradient_accumulation_steps 2 ^
     --learning_rate 3e-5 ^
-    --num_train_epochs 1 ^
+    --num_train_epochs 2 ^
     --pad_to_max_length ^
     --preprocessing_num_workers 2
 ```
